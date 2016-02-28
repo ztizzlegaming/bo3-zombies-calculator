@@ -23,6 +23,17 @@ function calculate() {
 	var round = $('#round').val();
 
 	if (isNaN(playerCount) || isNaN(round)) {
+		sweetAlert('Oops...', 'You entered something that isn\'t a number.', 'error');
+		return false;
+	}
+
+	if (round < 1) {
+		sweetAlert('Oops...', 'You entered an invalid round.', 'error');
+		return false;
+	}
+
+	if (playerCount < 1 || playerCount > 4) {
+		sweetAlert('Oops...', 'You entered an invalid number of players.', 'error');
 		return false;
 	}
 

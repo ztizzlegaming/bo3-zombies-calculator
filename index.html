@@ -39,40 +39,40 @@
 						</div>
 						<div class="form-group">
 							<label for="round">Round:</label>
-							<input class="form-control" id="round" placeholder="round #"></input>
+							<input type="number" min="1" class="form-control" id="round" placeholder="round #"></input>
 						</div>
 						<input type="submit" class="btn btn-success" name="Calculate!"></input>
 					</form>
 					<br><br>
 					<div id="results" style="display: none;">
 						<div class="result">
-							Zombies This Round: <span id="zombies-this-round"></span>
+							Zombies This Round: <span class="result-number" id="zombies-this-round"></span>
 						</div>
 						<div class="result">
-							Zombie Health: <span id="zombie-health"></span>
+							Zombie Health: <span class="result-number" id="zombie-health"></span>
 						</div>
 						<div class="result">
-							Total Zombies: <span id="total-zombies"></span>
+							Total Zombies: <span class="result-number" id="total-zombies"></span>
 						</div>
 						<div class="result">
 							XP Earned this round:
 							<br>
-							For completing this round: <span class="round-xp"></span>
+							For completing this round: <span class="round-xp result-number"></span>
 							<br>
-							All body shots: <span id="round-xp-body-shots"></span> + <span class="round-xp"></span> = <span id="total-round-xp-body-shots"></span>
+							All body shots: <span id="round-xp-body-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-body-shots"></span>
 							<br>
-							All headshots: <span id="round-xp-head-shots"></span> + <span class="round-xp"></span> = <span id="total-round-xp-head-shots"></span>
+							All headshots: <span id="round-xp-head-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-head-shots"></span>
 							<br>
-							All knives: <span id="round-xp-knives"></span> + <span class="round-xp"></span> = <span id="total-round-xp-knives"></span>
+							All knives: <span id="round-xp-knives"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-knives"></span>
 						</div>
 						<div class="result">
-							Total XP earned (including round completion bonuses):
+							Total XP earned (including round completion bonuses) (if co-op, this would be split between the players):
 							<br>
-							All body shots: <span id="total-xp-body-shots"></span>
+							All body shots: <span class="result-number" id="total-xp-body-shots"></span>
 							<br>
-							All headshots: <span id="total-xp-head-shots"></span>
+							All headshots: <span class="result-number" id="total-xp-head-shots"></span>
 							<br>
-							All knives: <span id="total-xp-knives"></span>
+							All knives: <span class="result-number" id="total-xp-knives"></span>
 						</div>
 					</div>
 				</div>
