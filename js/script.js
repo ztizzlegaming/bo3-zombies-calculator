@@ -2,20 +2,61 @@ var BODYSHOT_XP = 50;
 var HEADSHOT_XP = 75;
 var KNIFE_XP = 100;
 
-var player;
-
-var songs;
-
 $(function () {
-	player = $('#player');
-
-	songs = [
-		new Song(1, 'Elena Siegman', 'Dead Again'),
-		new Song(2, 'Elena Siegman', '115'),
-		new Song(3, 'Elena Siegman', 'Beauty of Annihilation')
+	var curSong;
+	var curSongIndex;
+	var songs = [
+		new Song(1, 'Treyarch Sounds', 'Undone', 'Nacht der Untoten'),
+		new Song(2, 'Elena Siegman', 'Lullaby for a Deadman', 'Verruckt'),
+		new Song(3, 'Elena Siegman', 'The One', 'Shi No Numa'),
+		new Song(4, 'Elena Siegman', 'Beauty of Annihilation', 'Der Riese'),
+		new Song(5, 'Elena Siegman', '115', 'Kino der Toten'),
+		new Song(6, 'Eminem ft. Pink', 'Won\'t Back Down', 'Five'),
+		new Song(7, 'Elena Siegman', 'Abracadavre', 'Ascension'),
+		new Song(8, 'Avenged Sevenfold', 'Not Ready to Die', 'Call of the Dead'),
+		new Song(9, 'Elena Siegman', 'Pareidolia', 'Shangri-La'),
+		new Song(10, 'Elena Siegman', 'Coming Home', 'Moon'),
+		new Song(11, 'Avenged Sevenfold', 'Nightmare', 'Moon'),
+		new Song(12, 'Clark S. Nova', 'Carrion', 'Tranzit'),
+		new Song(13, 'Brian Tuey', 'Samantha\'s Lullaby', 'Nuketown Zombies'),
+		new Song(14, 'Clark S. Nova', 'We All Fall Down', 'Die Rise'),
+		new Song(15, 'Johnny Cash', 'Rusty Cage', 'Mob of the Dead'),
+		new Song(16, 'Elena Siegman', 'Where Are We Going', 'Mob of the Dead'),
+		new Song(17, 'Malukah ', 'Always Running', 'Buried'),
+		new Song(18, 'Elena Siegman', 'Archangel', 'Origins'),
+		new Song(19, 'Avenged Sevenfold', 'Shephard of Fire', 'Origins'),
+		new Song(20, 'Jack Wall', 'Snakeskin Boots', 'Shadows of Evil'),
+		new Song(21, 'Elena Siegman', 'Beauty of Annihilation (Remix)', 'The Giant'),
+		new Song(22, 'Elena Siegman', 'Dead Again', 'Der Eisendrache')
 	];
+	curSongIndex = 0;
+	curSong = songs[curSongIndex];
+	setCurSong(curSong);
 
 	$('#form').on('submit', calculate);
+
+	$('#shuffle-btn').on('click', function () {
+		_.shuffle(songs);
+		curSong = songs[0];
+		setCurSong();
+	});
+
+	$('#rewind-btn').on('click', function () {
+		curSongIndex--;
+		if (curSongIndex < 0) {
+			curSongIndex = songs.length - 1;
+		}
+		curSong = songs[curSongIndex];
+		setCurSong(curSong);
+	});
+	$('#fast-forward-btn').on('click', function() {
+		curSongIndex++;
+		if (curSongIndex > songs.length - 1) {
+			curSongIndex = 0;
+		}
+		curSong = songs[curSongIndex];
+		setCurSong(curSong);
+	});
 });
 
 function calculate() {
@@ -155,11 +196,17 @@ function getZombieHealth(round) {
     return health;
 }
 
+function setCurSong(song) {
+	var player = document.getElementById('player');
+	player.src = song.getSongFilename();
+	$('#song').text(song.getSongArtist() + ' - ' + song.getSongName() + ' (' + song.getMap() + ')');
+}
+
 
 //Song object
-function Song(songId, songArtist, songName) {
-	this.getSongId = function() {
-		return songId;
+function Song(songId, songArtist, songName, map) {
+	this.getSongFilename = function() {
+		return 'songs/' + songId + '.mp3';
 	}
 
 	this.getSongArtist = function() {
@@ -168,5 +215,9 @@ function Song(songId, songArtist, songName) {
 
 	this.getSongName = function() {
 		return songName;
+	}
+
+	this.getMap = function() {
+		return map;
 	}
 }

@@ -14,12 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script>
 
+	<!-- Underscore.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/script.js"></script>
 </head>
 <body>
-	<audio id="player"></audio>
-
 	<div class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<a href="/bo3-zombies-calculator/" class="navbar-brand">
@@ -32,48 +33,56 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="jumbotron">
-					<form id="form">
-						<div class="form-group">
-							<label for="number-players">Number of players:</label>
-							<input type="number" min="1" max="4" class="form-control" id="number-players" placeholder="1 - 4"></input>
+					<div>
+						<form id="form">
+							<div class="form-group">
+								<label for="number-players">Number of players:</label>
+								<input type="number" min="1" max="4" class="form-control" id="number-players" placeholder="1 - 4"></input>
+							</div>
+							<div class="form-group">
+								<label for="round">Round:</label>
+								<input type="number" min="1" class="form-control" id="round" placeholder="round #"></input>
+							</div>
+							<input type="submit" class="btn btn-success" name="Calculate!"></input>
+						</form>
+						<br><br>
+						<div id="results" style="display: none;">
+							<div class="result">
+								Zombies This Round: <span class="result-number" id="zombies-this-round"></span>
+							</div>
+							<div class="result">
+								Zombie Health: <span class="result-number" id="zombie-health"></span>
+							</div>
+							<div class="result">
+								Total Zombies: <span class="result-number" id="total-zombies"></span>
+							</div>
+							<div class="result">
+								XP Earned this round:
+								<br>
+								For completing this round: <span class="round-xp result-number"></span>
+								<br>
+								All body shots: <span id="round-xp-body-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-body-shots"></span>
+								<br>
+								All headshots: <span id="round-xp-head-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-head-shots"></span>
+								<br>
+								All knives: <span id="round-xp-knives"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-knives"></span>
+							</div>
+							<div class="result">
+								Total XP earned (including round completion bonuses) (if co-op, this would be split between the players):
+								<br>
+								All body shots: <span class="result-number" id="total-xp-body-shots"></span>
+								<br>
+								All headshots: <span class="result-number" id="total-xp-head-shots"></span>
+								<br>
+								All knives: <span class="result-number" id="total-xp-knives"></span>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="round">Round:</label>
-							<input type="number" min="1" class="form-control" id="round" placeholder="round #"></input>
+					</div>
+					<div>
+						<div>
+							<button id="rewind-btn"><<</button> <span id="song"></span> <button id="fast-forward-btn">>></button>
 						</div>
-						<input type="submit" class="btn btn-success" name="Calculate!"></input>
-					</form>
-					<br><br>
-					<div id="results" style="display: none;">
-						<div class="result">
-							Zombies This Round: <span class="result-number" id="zombies-this-round"></span>
-						</div>
-						<div class="result">
-							Zombie Health: <span class="result-number" id="zombie-health"></span>
-						</div>
-						<div class="result">
-							Total Zombies: <span class="result-number" id="total-zombies"></span>
-						</div>
-						<div class="result">
-							XP Earned this round:
-							<br>
-							For completing this round: <span class="round-xp result-number"></span>
-							<br>
-							All body shots: <span id="round-xp-body-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-body-shots"></span>
-							<br>
-							All headshots: <span id="round-xp-head-shots"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-head-shots"></span>
-							<br>
-							All knives: <span id="round-xp-knives"></span> + <span class="round-xp"></span> = <span class="result-number" id="total-round-xp-knives"></span>
-						</div>
-						<div class="result">
-							Total XP earned (including round completion bonuses) (if co-op, this would be split between the players):
-							<br>
-							All body shots: <span class="result-number" id="total-xp-body-shots"></span>
-							<br>
-							All headshots: <span class="result-number" id="total-xp-head-shots"></span>
-							<br>
-							All knives: <span class="result-number" id="total-xp-knives"></span>
-						</div>
+						<audio id="player" controls></audio>
 					</div>
 				</div>
 			</div>
