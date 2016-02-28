@@ -34,7 +34,7 @@
 			<div class="col-sm-12">
 				<div class="jumbotron">
 					<div>
-						<form id="form">
+						<form id="form" autocomplete="off">
 							<div class="form-group">
 								<label for="number-players">Number of players:</label>
 								<input type="number" min="1" max="4" class="form-control" id="number-players" placeholder="1 - 4"></input>
@@ -80,9 +80,13 @@
 					</div>
 					<div>
 						<div>
-							<button id="rewind-btn"><<</button> <span id="song"></span> <button id="fast-forward-btn">>></button>
+							<button class="btn" id="rewind-btn"><<</button> <span id="song"></span> <button class="btn" id="fast-forward-btn">>></button>
 						</div>
 						<audio id="player" controls></audio>
+						<div>
+							<button class="btn btn-success" id="unshuffle-btn">Unshuffle songs</button>
+							<button class="btn btn-success" id="shuffle-btn">Shuffle songs</button>
+						</div>
 					</div>
 				</div>
 			</div>
