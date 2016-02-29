@@ -37,6 +37,8 @@ $(function () {
 	curSong = songs[curSongIndex];
 	setCurSong(curSong);
 
+	var player = document.getElementById('player');
+
 	$('#form').on('submit', calculate);
 
 	$('#rewind-btn').on('click', function () {
@@ -46,22 +48,28 @@ $(function () {
 		}
 		curSong = songs[curSongIndex];
 		setCurSong(curSong);
+		player.play();
 	});
 
-	$('#fast-forward-btn').on('click', function () {
+	$('#fast-forward-btn').on('click', fastForward);
+	$(player).on('ended', fastForward);
+	
+	function fastForward () {
 		curSongIndex++;
 		if (curSongIndex > songs.length - 1) {
 			curSongIndex = 0;
 		}
 		curSong = songs[curSongIndex];
 		setCurSong(curSong);
-	});
+		player.play();
+	}
 
 	$('#shuffle-btn').on('click', function () {
 		songs = _.shuffle(songs);
 		curSongIndex = 0;
 		curSong = songs[curSongIndex];
 		setCurSong(curSong);
+		player.play();
 	});
 
 	$('#unshuffle-btn').on('click', function () {
@@ -69,7 +77,10 @@ $(function () {
 		curSongIndex = 0;
 		curSong = songs[curSongIndex];
 		setCurSong(curSong);
+		player.play();
 	});
+
+
 });
 
 function calculate() {
