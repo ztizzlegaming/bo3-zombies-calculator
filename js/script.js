@@ -24,7 +24,8 @@ var SONGS = [
 	new Song(19, 'Avenged Sevenfold', 'Shephard of Fire', 'Origins'),
 	new Song(20, 'Jack Wall', 'Snakeskin Boots', 'Shadows of Evil'),
 	new Song(21, 'Elena Siegman', 'Beauty of Annihilation (Remix)', 'The Giant'),
-	new Song(22, 'Elena Siegman', 'Dead Again', 'Der Eisendrache')
+	new Song(22, 'Elena Siegman', 'Dead Again', 'Der Eisendrache'),
+	new Song(23, 'Malukah', 'Dead Flowers', 'Zetsubou No Shima')
 ];
 
 $(function () {
