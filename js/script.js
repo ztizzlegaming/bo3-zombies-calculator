@@ -224,7 +224,7 @@ function getZombieHealth(round) {
 function setCurSong(song) {
 	var player = document.getElementById('player');
 	player.src = song.getSongFilename();
-	$('#song').text(song.getSongArtist() + ' - ' + song.getSongName() + ' (' + song.getMap() + ')');
+	$('#song').text(song.toString());
 }
 
 
@@ -244,5 +244,9 @@ function Song(songId, songArtist, songName, map) {
 
 	this.getMap = function() {
 		return map;
+	}
+
+	this.toString = function() {
+		return songArtist + ' - ' + songName + ' (' + map + ')';
 	}
 }
