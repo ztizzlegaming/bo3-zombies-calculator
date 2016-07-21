@@ -18,7 +18,7 @@ var SONGS = [
 	new Song(13, 'Brian Tuey', 'Samantha\'s Lullaby', 'Nuketown Zombies'),
 	new Song(14, 'Clark S. Nova', 'We All Fall Down', 'Die Rise'),
 	new Song(15, 'Johnny Cash', 'Rusty Cage', 'Mob of the Dead'),
-	new Song(16, 'Elena Siegman', 'Where Are We Going', 'Mob of the Dead'),
+	new Song(16, 'Malukah', 'Where Are We Going', 'Mob of the Dead'),
 	new Song(17, 'Malukah ', 'Always Running', 'Buried'),
 	new Song(18, 'Elena Siegman', 'Archangel', 'Origins'),
 	new Song(19, 'Avenged Sevenfold', 'Shephard of Fire', 'Origins'),
