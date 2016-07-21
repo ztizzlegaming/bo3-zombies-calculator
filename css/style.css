@@ -13,3 +13,7 @@
 #song {
 	font-size: 16px;
 }
+
+label {
+	text-align: right;
+}

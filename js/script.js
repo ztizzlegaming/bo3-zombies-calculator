@@ -26,7 +26,7 @@ var SONGS = [
 	new Song(21, 'Elena Siegman', 'Beauty of Annihilation (Remix)', 'The Giant'),
 	new Song(22, 'Elena Siegman', 'Dead Again', 'Der Eisendrache'),
 	new Song(23, 'Malukah', 'Dead Flowers', 'Zetsubou No Shima'),
-	new Song(24, 'Motörhead', 'Ace of Spades', 'Gorod Krovi'),
+	new Song(24, 'Mot&ouml;rhead', 'Ace of Spades', 'Gorod Krovi'),
 	new Song(25, 'Clark S. Nova', 'Dead Ended', 'Gorod Krovi')
 ];
 
@@ -89,6 +89,11 @@ $(function () {
 function calculate() {
 	var playerCount = $('#number-players').val();
 	var round = $('#round').val();
+	var doubleXp = $('#double-xp').is(':checked');
+	var doubleXpMultiplier = 1;
+	if (doubleXp) {
+		doubleXpMultiplier = 2;
+	}
 
 	if (isNaN(playerCount) || isNaN(round)) {
 		sweetAlert('Oops...', 'You entered something that isn\'t a number.', 'error');
@@ -109,21 +114,21 @@ function calculate() {
 	var totalZombies = getTotalZombies(playerCount, round);
 	var zombieHealth = getZombieHealth(round);
 
-	var roundXP = getXPForRound(round);
+	var roundXP = getXPForRound(round) * doubleXpMultiplier;
 
-	var bodyshotXP = BODYSHOT_XP * zombiesThisRound;
+	var bodyshotXP = BODYSHOT_XP * zombiesThisRound * doubleXpMultiplier;
 	var totalRoundBodyshotXP = bodyshotXP + roundXP;
 
-	var headshotXP = HEADSHOT_XP * zombiesThisRound;
+	var headshotXP = HEADSHOT_XP * zombiesThisRound * doubleXpMultiplier;
 	var totalRoundHeadshotXP = headshotXP + roundXP;
 
-	var knifeXP = KNIFE_XP * zombiesThisRound;
+	var knifeXP = KNIFE_XP * zombiesThisRound * doubleXpMultiplier;
 	var totalRoundKnifeXP = knifeXP + roundXP;
 
-	var totalRoundXP = getTotalRoundXP(round);
-	var totalBodyshotXP = BODYSHOT_XP * totalZombies + totalRoundXP;
-	var totalHeadshotXP = HEADSHOT_XP * totalZombies + totalRoundXP;
-	var totalKnifeXP = KNIFE_XP * totalZombies + totalRoundXP;
+	var totalRoundXP = getTotalRoundXP(round) * doubleXpMultiplier;
+	var totalBodyshotXP = BODYSHOT_XP * totalZombies * doubleXpMultiplier + totalRoundXP;
+	var totalHeadshotXP = HEADSHOT_XP * totalZombies * doubleXpMultiplier + totalRoundXP;
+	var totalKnifeXP = KNIFE_XP * totalZombies * doubleXpMultiplier + totalRoundXP;
 
 	//Set all of the html
 	$('#zombies-this-round').text(zombiesThisRound);
@@ -226,7 +231,7 @@ function getZombieHealth(round) {
 function setCurSong(song) {
 	var player = document.getElementById('player');
 	player.src = song.getSongFilename();
-	$('#song').text(song.toString());
+	$('#song').html(song.toString());
 }
 
 
