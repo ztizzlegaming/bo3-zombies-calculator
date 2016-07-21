@@ -171,8 +171,38 @@ function getTotalRoundXP(round) {
 	return totalXP;
 }
 
-//Zombulator functions
+function setCurSong(song) {
+	var player = document.getElementById('player');
+	player.src = song.getSongFilename();
+	$('#song').html(song.toString());
+}
 
+
+//Song object
+function Song(songId, songArtist, songName, map) {
+	this.getSongFilename = function() {
+		return 'songs/' + songId + '.mp3';
+	}
+
+	this.getSongArtist = function() {
+		return songArtist;
+	}
+
+	this.getSongName = function() {
+		return songName;
+	}
+
+	this.getMap = function() {
+		return map;
+	}
+
+	this.toString = function() {
+		return songArtist + ' - ' + songName + ' (' + map + ')';
+	}
+}
+
+//Zombulator functions
+//Full credit for all of the functions below goes to http://zombulator.com/
 function getZombieCount(players, round) {
 	var zombies = 0;
     if (players == 1) {
@@ -226,34 +256,4 @@ function getZombieHealth(round) {
         health = Math.round(health);
     }
     return health;
-}
-
-function setCurSong(song) {
-	var player = document.getElementById('player');
-	player.src = song.getSongFilename();
-	$('#song').html(song.toString());
-}
-
-
-//Song object
-function Song(songId, songArtist, songName, map) {
-	this.getSongFilename = function() {
-		return 'songs/' + songId + '.mp3';
-	}
-
-	this.getSongArtist = function() {
-		return songArtist;
-	}
-
-	this.getSongName = function() {
-		return songName;
-	}
-
-	this.getMap = function() {
-		return map;
-	}
-
-	this.toString = function() {
-		return songArtist + ' - ' + songName + ' (' + map + ')';
-	}
 }

@@ -6,11 +6,7 @@
 	font-weight: bold;
 }
 
-#results {
-	font-size: 16px;
-}
-
-#song {
+#results, #song, footer {
 	font-size: 16px;
 }
 
